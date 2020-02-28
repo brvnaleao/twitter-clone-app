@@ -3,9 +3,9 @@ console.log("hi")
 
 const form = document.getElementById('form');
 const loadingElement = document.querySelector('.loading');
-
+const API_URL = 'http://localhost.com:5000/meows'
 loadingElement.style.display = 'none';
-form.addEventListener('submit', (e) =>{
+form.addEventListener('submit', async (e) =>{
     e.preventDefault();
     const formData = new FormData(form);
     const name = formData.get('name');
@@ -15,7 +15,15 @@ form.addEventListener('submit', (e) =>{
         name,
         content
     }
-    console.log(mew);
+    
     loadingElement.style.display = '';
     form.style.display = 'none';
+
+     await fetch(API_URL, {
+        method: "POST",
+        body: JSON.stringify(mew),
+        headers: {
+            'content-type': 'aplication/json'
+        }
+    })
 })
