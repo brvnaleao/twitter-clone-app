@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <h1 class="principalTitle">🐈 Meower - Twitter for Cats 🐈</h1>
+        <h2 class="principalTitle">🐈 Meower - Twitter for Cats 🐈</h2>
     </header>
     <main>
         <form class="mew-form" id="form">
@@ -21,11 +21,16 @@
             <textarea class="u-full-width" type="text" id="name" name="content"></textarea>
       
             <button class="button-primary" type="submit">Send your mew 🐈</button>
+            <input type="button" class="button-primary" value="List Mews 🐈" onclick="listAllMews()">
         
         </form>
     </main>
     <div class="loading">
         <img src="images/loading.gif">
+    </div>
+    <div class="mews mew-form">
+
+
     </div>
     <script src="scripts/script.js"></script>
     

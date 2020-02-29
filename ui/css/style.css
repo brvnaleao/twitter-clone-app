@@ -1,5 +1,9 @@
 .principalTitle{
+    margin-top: 20px;
     text-align: center;
+}
+body{
+    background: #e8e8e8;
 }
 .mew-form, .loading{
     width: 50%;
@@ -8,4 +12,9 @@
 }
 .loading{
     text-align: center;
+}
+
+.mews h6{
+    color: #aaa;
+    font-weight: lighter;
 }
