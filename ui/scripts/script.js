@@ -1,9 +1,11 @@
 const form = document.getElementById('form');
 const loadingElement = document.querySelector('.loading');
 const mewsElement = document.querySelector('.mews');
+const tooMuchRequests = document.querySelector('.request')
 const API_URL = 'http://localhost:1231/mews'
 
 loadingElement.style.display = '';
+tooMuchRequests.style.display = 'none';
 
 listAllMews()
 
@@ -35,23 +37,40 @@ form.addEventListener('submit', (e) =>{
             form.reset()
             loadingElement.style.display = 'none'
             form.style.display = ''
+            listAllMews()
+    }).catch(function(err){
+
+        tooMuchRequests.style.display = ''
+        setTimeout(() => {
+            form.style.display = ''
+            loadingElement.style.display = 'none'
+            tooMuchRequests.style.display = 'none'
+
+        }, 30000)
+       
+       
+        form.reset()
+
+
     })
 })
 
 function listAllMews(){
+    mewsElement.innerHTML = ''
 
     fetch(API_URL,{
         method: "GET",
     }).then(res => res.json()).then(mews => {
 
-        loadingElement.style.display = 'none';
+       
+        mews.reverse();
         mews.forEach(mew => {
             console.log(mews)
             const div = document.createElement('div')
             const header = document.createElement('h3')
             header.textContent = mew.name
             const date = document.createElement('h6')
-            date.textContent = mew.created
+            date.textContent = new Date(mew.created)
 
             const content = document.createElement('p')
             content.textContent = mew.content
@@ -62,6 +81,7 @@ function listAllMews(){
 
         
         });
+        loadingElement.style.display = 'none';
         
         
     
