@@ -6,7 +6,6 @@ const db = monk('localhost/meower')
 
 const mews = db.get('mews')
 
-
 var bodyParser = require('body-parser');
 const app = express()
 app.use(cors())
@@ -31,7 +30,6 @@ app.post('/mews', (req, res)=>{
             content: req.body.content.toString(),
             created: new Date()
         }
-
 
         mews.insert(mew).then(createdMew =>{
             res.status(200).json(createdMew)
